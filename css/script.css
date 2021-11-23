@@ -1,0 +1,46 @@
+#pixiv_popupViewer_container {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: 0.2s;
+}
+
+#pixiv_popupViewer_container.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#pixiv_popupViewer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    border: 0;
+    transition: 0.2s;
+}
+
+#pixiv_popupViewer.fullscreen{
+    width: 100%;
+    height: 100%;
+}
+
+#pixiv_popupViewer_switch_fullscreen_button {
+    position: fixed;
+    bottom: 34px;
+    left: 28px;
+    z-index: 10000;
+    box-sizing: border-box;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border-radius: 24px;
+    background-color: rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}

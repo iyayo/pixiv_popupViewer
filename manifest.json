@@ -1,0 +1,13 @@
+{
+  "name": "pixiv ポップアップビューアー",
+  "version": "0.1",
+  "manifest_version": 3,
+  "description": "",
+  "content_scripts": [
+    {
+      "js": ["js/script.js"],
+      "css": ["css/script.css"],
+      "matches": ["https://www.pixiv.net/*"]
+    }
+  ]
+}
