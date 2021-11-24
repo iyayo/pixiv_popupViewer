@@ -64,16 +64,20 @@ window.onload = async () => {
 
     function getStorageOptions() {
         return new Promise((resolve, reject) => {
-            chrome.storage.local.get(["options"], items => resolve(items.options))
+            chrome.storage.local.get(["popupWidth", "popupHeight"], items => resolve(items))
         })
     }
 
     function compressPopup(width, height) {
-        if (width === undefined && height === undefined) return;
-
         iframe.classList.remove("expand");
-        iframe.style.width = width + "%";
-        iframe.style.height = height + "%";
+
+        if (width === undefined || height === undefined) {
+            iframe.style.width = "80%";
+            iframe.style.height = "90%";
+        } else {
+            iframe.style.width = width + "%";
+            iframe.style.height = height + "%";
+        }
     }
 
     function expandPopup() {
@@ -83,7 +87,8 @@ window.onload = async () => {
     }
 
     chrome.storage.onChanged.addListener(items => {
-        options = items.options.newValue;
+        if (items.popupWidth) options.popupWidth = items.popupWidth.newValue;
+        if (items.popupHeight) options.popupHeight = items.popupHeight.newValue;
 
         if (iframe.classList.contains("expand")) return;
 
