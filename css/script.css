@@ -26,12 +26,7 @@
     transition: 0.2s;
 }
 
-#pixiv_popupViewer.fullscreen{
-    width: 100%;
-    height: 100%;
-}
-
-#pixiv_popupViewer_switch_fullscreen_button {
+#pixiv_popupViewer_switch_expand_button {
     position: fixed;
     bottom: 34px;
     left: 28px;
