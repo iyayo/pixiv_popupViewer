@@ -2,7 +2,7 @@
   "name": "pixiv ポップアップビューアー",
   "version": "0.1",
   "manifest_version": 3,
-  "description": "",
+  "description": "pixivのイラスト・マンガ・小説を、ページ移動せずにポップアップで表示する拡張機能です。",
   "content_scripts": [
     {
       "js": ["js/script.js"],
