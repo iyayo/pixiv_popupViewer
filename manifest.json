@@ -9,5 +9,22 @@
       "css": ["css/script.css"],
       "matches": ["https://www.pixiv.net/*"]
     }
-  ]
+  ],
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "ruleset",
+      "enabled": false,
+      "path": "json/rules.json"
+    }]
+  },
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "https://www.pixiv.net/*"
+  ],
+  "options_ui": {
+    "page": "html/options.html"
+  }
 }
