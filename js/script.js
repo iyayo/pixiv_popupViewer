@@ -68,6 +68,10 @@ window.onload = async () => {
 
             if (!aTag || aTag.href === aTags[currentIndex].href) continue;
 
+            if (aTag.href === aTags[0].href) previous_work_button.style.visibility = "hidden";
+            else previous_work_button.style.visibility = "visible";
+
+            next_work_button.style.visibility = "visible";
             iframe.src = aTag.href;
             iframe.dataset.currentIndex = i;
             
@@ -85,6 +89,10 @@ window.onload = async () => {
 
             if (!aTag || aTag.href === aTags[currentIndex].href) continue;
 
+            if (aTag.href === aTags[aTags.length - 1].href) next_work_button.style.visibility = "hidden";
+            else next_work_button.style.visibility = "visible";
+
+            previous_work_button.style.visibility = "visible";
             iframe.src = aTag.href;
             iframe.dataset.currentIndex = i;
             
@@ -104,6 +112,12 @@ window.onload = async () => {
                 }
 
                 observer.disconnect();
+
+                if (event.currentTarget.href === aTags[0].href) previous_work_button.style.visibility = "hidden";
+                else previous_work_button.style.visibility = "visible";
+
+                if (event.currentTarget.href === aTags[aTags.length - 1].href) next_work_button.style.visibility = "hidden";
+                else next_work_button.style.visibility = "visible";
 
                 iframe.dataset.currentIndex = aTags.findIndex(aTag => aTag === event.currentTarget);
                 iframe.src = event.currentTarget.href;
