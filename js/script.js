@@ -37,7 +37,7 @@ window.onload = async () => {
     iframe_container.onclick = function () {
         if (!iframe_container.classList.contains("show")) return;
 
-        iframe.src = "about:blank";
+        iframe.contentWindow.location.replace("about:blank");
         iframe_container.classList.toggle("show");
 
         document.getElementsByTagName("html")[0].style.overflowY = "auto";
@@ -72,7 +72,8 @@ window.onload = async () => {
             else previous_work_button.style.visibility = "visible";
 
             next_work_button.style.visibility = "visible";
-            iframe.src = aTag.href;
+
+            iframe.contentWindow.location.replace(aTag.href);
             iframe.dataset.currentIndex = i;
             
             return;
@@ -93,7 +94,8 @@ window.onload = async () => {
             else next_work_button.style.visibility = "visible";
 
             previous_work_button.style.visibility = "visible";
-            iframe.src = aTag.href;
+
+            iframe.contentWindow.location.replace(aTag.href);
             iframe.dataset.currentIndex = i;
             
             return;
@@ -120,7 +122,7 @@ window.onload = async () => {
                 else next_work_button.style.visibility = "visible";
 
                 iframe.dataset.currentIndex = aTags.findIndex(aTag => aTag === event.currentTarget);
-                iframe.src = event.currentTarget.href;
+                iframe.contentWindow.location.replace(event.currentTarget.href);
                 iframe_container.classList.toggle("show");
 
                 document.getElementsByTagName("html")[0].style.overflowY = "hidden";
