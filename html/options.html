@@ -12,6 +12,17 @@
         <h2>ポップアップ</h2>
 
         <div class="option">
+            <div class="option_name">対象</div>
+            <div class="option_value">
+                <select id="popupTarget">
+                    <option value='a[href^="/artworks/"], a[href^="/novel/show.php?"]' selected>イラスト・マンガ・小説</option>
+                    <option value='a[href^="/artworks/"]'>イラスト・マンガ</option>
+                    <option value='a[href^="/novel/show.php?"]'>小説</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="option">
             <div class="option_name">横幅</div>
             <div class="option_value">
                 <input type="number" id="popupWidth" value="80" step="1" min="1" max="99">（％）

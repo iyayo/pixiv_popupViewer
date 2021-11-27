@@ -1,9 +1,11 @@
+const popupTarget = document.getElementById("popupTarget");
 const popupWidth = document.getElementById("popupWidth");
 const popupHeight = document.getElementById("popupHeight");
 const mobileView = document.getElementById("mobileView");
 
 function restore(){
     chrome.storage.local.get(null, items => {
+        if (items.popupTarget !== undefined) document.querySelector(`option[value='${items.popupTarget}']`).selected = true;
         if (items.popupWidth !== undefined) popupWidth.value = items.popupWidth;
         if (items.popupHeight !== undefined) popupHeight.value = items.popupHeight;
         if (items.mobileView !== undefined) mobileView.checked = items.mobileView;
@@ -12,6 +14,7 @@ function restore(){
 
 function save() {
     chrome.storage.local.set({ 
+        "popupTarget": popupTarget.value,
         "popupWidth": popupWidth.value,
         "popupHeight": popupHeight.value,
         "mobileView": mobileView.checked
@@ -26,6 +29,6 @@ function updateRulesets(status) {
 
 restore();
 
-document.querySelectorAll("input").forEach(element => {
+document.querySelectorAll("select, input").forEach(element => {
     element.onchange = save;
 });

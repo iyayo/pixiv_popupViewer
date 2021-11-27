@@ -103,7 +103,8 @@ window.onload = async () => {
     }
 
     function setEventHandler() {
-        aTags = Array.from(document.querySelectorAll('a[href^="/artworks/"], a[href^="/novel/show.php?"]'));
+        if (options.popupTarget === undefined) aTags = Array.from(document.querySelectorAll('a[href^="/artworks/"], a[href^="/novel/show.php?"]'));
+        else aTags = Array.from(document.querySelectorAll(options.popupTarget));
 
         aTags.forEach(element => {
             element.onclick = function (event) {
@@ -132,7 +133,7 @@ window.onload = async () => {
 
     function getStorageOptions() {
         return new Promise((resolve, reject) => {
-            chrome.storage.local.get(["popupWidth", "popupHeight"], items => resolve(items))
+            chrome.storage.local.get(["popupTarget", "popupWidth", "popupHeight"], items => resolve(items))
         })
     }
 
@@ -155,6 +156,7 @@ window.onload = async () => {
     }
 
     chrome.storage.onChanged.addListener(items => {
+        if (items.popupTarget) options.popupTarget = items.popupTarget.newValue;
         if (items.popupWidth) options.popupWidth = items.popupWidth.newValue;
         if (items.popupHeight) options.popupHeight = items.popupHeight.newValue;
 
