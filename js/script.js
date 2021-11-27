@@ -12,6 +12,7 @@ window.onload = async () => {
 
     const iframe = document.createElement("iframe");
     iframe.id = "pixiv_popupViewer";
+    if (localStorage.getItem("theme") === "dark") iframe.classList.add("dark");
 
     const switch_expand_button = document.createElement("div");
     switch_expand_button.id = "pixiv_popupViewer_switch_expand_button";
@@ -33,6 +34,13 @@ window.onload = async () => {
 
     target.append(iframe_container);
     iframe_container.append(iframe, switch_expand_button, previous_work_button, next_work_button);
+
+    window.onstorage = function(e) {
+        if (e.key !== "theme") return;
+        
+        if (localStorage.getItem("theme") === "dark") iframe.classList.add("dark");
+        else iframe.classList.remove("dark");
+    }
 
     iframe_container.onclick = function () {
         if (!iframe_container.classList.contains("show")) return;

@@ -27,6 +27,10 @@
     transition: 0.2s;
 }
 
+#pixiv_popupViewer.dark {
+    background-color: #000000;
+}
+
 #pixiv_popupViewer_switch_expand_button {
     position: fixed;
     bottom: 34px;
