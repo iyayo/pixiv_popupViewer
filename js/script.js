@@ -135,13 +135,14 @@ window.onload = async () => {
                 iframe_container.classList.toggle("show");
 
                 document.getElementsByTagName("html")[0].style.overflowY = "hidden";
+                zoomPopup();
             };
         });
     }
 
     function getStorageOptions() {
         return new Promise((resolve, reject) => {
-            chrome.storage.local.get(["popupTarget", "popupWidth", "popupHeight"], items => resolve(items))
+            chrome.storage.local.get(["popupTarget", "popupWidth", "popupHeight", "popupZoom", "notZoomWhenExpand"], items => resolve(items))
         })
     }
 
@@ -163,10 +164,25 @@ window.onload = async () => {
         iframe.style.height = "100%";
     }
 
+    function zoomPopup() {
+        if (options.popupZoom === undefined) return;
+
+        const interval = setInterval(() => {
+            if (!iframe_container.classList.contains("show")) clearInterval(interval);
+
+            if (iframe.contentDocument.body) {
+                if (options.notZoomWhenExpand && iframe.classList.contains("expand")) iframe.contentDocument.body.style.zoom = "normal";
+                else iframe.contentDocument.body.style.zoom = options.popupZoom + "%";
+            }
+        }, 100);
+    }
+
     chrome.storage.onChanged.addListener(items => {
         if (items.popupTarget) options.popupTarget = items.popupTarget.newValue;
         if (items.popupWidth) options.popupWidth = items.popupWidth.newValue;
         if (items.popupHeight) options.popupHeight = items.popupHeight.newValue;
+        if (items.popupZoom) options.popupZoom = items.popupZoom.newValue;
+        if (items.notZoomWhenExpand) options.notZoomWhenExpand = items.notZoomWhenExpand.newValue;
 
         if (iframe.classList.contains("expand")) return;
 
