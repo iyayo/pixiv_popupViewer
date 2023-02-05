@@ -1,6 +1,6 @@
 {
   "name": "pixiv ポップアップビューアー",
-  "version": "1.2",
+  "version": "1.3",
   "manifest_version": 3,
   "description": "pixivのイラスト・マンガ・小説を、ページ移動せずにポップアップで表示する拡張機能です。",
   "icons" : {
@@ -32,5 +32,15 @@
   ],
   "options_ui": {
     "page": "html/options.html"
+  },
+  "commands": {
+    "next_work": {
+      "description": "次の作品を表示する",
+      "global": false
+    },
+    "prev_work": {
+      "description": "前の作品を表示する",
+      "global": false
+    }
   }
 }
