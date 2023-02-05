@@ -4,6 +4,7 @@ const popupHeight = document.getElementById("popupHeight");
 const popupZoom = document.getElementById("popupZoom");
 const notZoomWhenExpand = document.getElementById("notZoomWhenExpand");
 const mobileView = document.getElementById("mobileView");
+const autoSeeAll = document.getElementById("autoSeeAll");
 
 function restore(){
     chrome.storage.local.get(null, items => {
@@ -13,6 +14,7 @@ function restore(){
         if (items.popupZoom !== undefined) popupZoom.value = items.popupZoom;
         if (items.notZoomWhenExpand !== undefined) notZoomWhenExpand.checked = items.notZoomWhenExpand;
         if (items.mobileView !== undefined) mobileView.checked = items.mobileView;
+        if (items.autoSeeAll !== undefined) autoSeeAll.checked = items.autoSeeAll;
     })
 }
 
@@ -23,7 +25,8 @@ function save() {
         "popupHeight": popupHeight.value,
         "popupZoom": popupZoom.value,
         "notZoomWhenExpand": notZoomWhenExpand.checked,
-        "mobileView": mobileView.checked
+        "mobileView": mobileView.checked,
+        "autoSeeAll": autoSeeAll.checked
     })
     updateRulesets(mobileView.checked);
 }

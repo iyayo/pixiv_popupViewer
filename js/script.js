@@ -135,6 +135,15 @@ window.onload = async () => {
                 iframe_container.classList.toggle("show");
 
                 document.getElementsByTagName("html")[0].style.overflowY = "hidden";
+
+                const autoSeeAll_interval = setInterval(() => {
+                    if (!options.autoSeeAll) return;
+
+                    if (!iframe_container.classList.contains("show")) clearInterval(autoSeeAll_interval);
+                    if (iframe.contentWindow.document.querySelector("button.sc-emr523-0.guczbC")) iframe.contentWindow.document.querySelector("button.sc-emr523-0.guczbC").click();
+                    if (iframe.contentWindow.document.querySelector(".button-link")) iframe.contentWindow.document.querySelector(".button-link").click();
+                }, 100)
+
                 zoomPopup();
             };
         });
@@ -142,7 +151,7 @@ window.onload = async () => {
 
     function getStorageOptions() {
         return new Promise((resolve, reject) => {
-            chrome.storage.local.get(["popupTarget", "popupWidth", "popupHeight", "popupZoom", "notZoomWhenExpand"], items => resolve(items))
+            chrome.storage.local.get(["popupTarget", "popupWidth", "popupHeight", "popupZoom", "notZoomWhenExpand", "autoSeeAll"], items => resolve(items))
         })
     }
 
@@ -183,6 +192,7 @@ window.onload = async () => {
         if (items.popupHeight) options.popupHeight = items.popupHeight.newValue;
         if (items.popupZoom) options.popupZoom = items.popupZoom.newValue;
         if (items.notZoomWhenExpand) options.notZoomWhenExpand = items.notZoomWhenExpand.newValue;
+        if (items.autoSeeAll) options.autoSeeAll = items.autoSeeAll.newValue;
 
         if (iframe.classList.contains("expand")) return;
 
