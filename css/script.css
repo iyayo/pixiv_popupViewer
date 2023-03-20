@@ -1,4 +1,7 @@
 #pixiv_popupViewer_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     position: fixed;
     top: 0;
     z-index: 9999;
@@ -16,12 +19,12 @@
 }
 
 #pixiv_popupViewer {
-    position: fixed;
+    order: 2;
     inset: 0;
     z-index: 9999;
     width: 80%;
     height: 90%;
-    margin: auto;
+    margin: auto 0;
     border: 0;
     background-color: #fff;
     user-select: none;
@@ -33,10 +36,10 @@
 }
 
 #pixiv_popupViewer_switch_expand_button {
+    z-index: 10001;
     position: fixed;
-    bottom: 34px;
-    left: 28px;
-    z-index: 10000;
+    top: 24px;
+    right: 24px;
     box-sizing: border-box;
     width: 48px;
     height: 48px;
@@ -48,34 +51,26 @@
 }
 
 #pixiv_popupViewer_previous_work_button {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 1;
     z-index: 10000;
-    box-sizing: border-box;
-    width: 48px;
-    height: 48px;
-    margin: auto;
-    padding: 12px;
-    border-radius: 24px;
+    width: 5%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: 0.2s;
 }
 
 #pixiv_popupViewer_next_work_button {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 3;
     z-index: 10000;
-    box-sizing: border-box;
-    width: 48px;
-    height: 48px;
-    margin: auto;
-    padding: 12px;
-    border-radius: 24px;
+    width: 5%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: 0.2s;
