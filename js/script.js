@@ -198,4 +198,11 @@ window.onload = async () => {
 
         compressPopup(options.popupWidth, options.popupHeight);
     })
+
+    chrome.runtime.onMessage.addListener(request => {
+          if (request === "expand") switch_expand_button.click();
+          if (request === "prev_work") previous_work_button.click();
+          if (request === "next_work") next_work_button.click();
+        }
+    )
 }

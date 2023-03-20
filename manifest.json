@@ -16,6 +16,10 @@
       "matches": ["https://www.pixiv.net/*"]
     }
   ],
+  "background": {
+    "service_worker": "js/service_worker.js",
+    "type": "module"
+  },
   "declarative_net_request": {
     "rule_resources": [{
       "id": "ruleset",
@@ -34,12 +38,16 @@
     "page": "html/options.html"
   },
   "commands": {
-    "next_work": {
-      "description": "次の作品を表示する",
+    "expand": {
+      "description": "最大化/縮小する",
       "global": false
     },
     "prev_work": {
       "description": "前の作品を表示する",
+      "global": false
+    },
+    "next_work": {
+      "description": "次の作品を表示する",
       "global": false
     }
   }
