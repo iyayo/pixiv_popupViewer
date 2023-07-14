@@ -203,6 +203,6 @@ window.onload = async () => {
           if (request === "expand") switch_expand_button.click();
           if (request === "prev_work") previous_work_button.click();
           if (request === "next_work") next_work_button.click();
-        }
+        if (request === "add_bookmark" && iframe.contentWindow.document.querySelector("button.gtm-main-bookmark")) iframe.contentWindow.document.querySelector("button.gtm-main-bookmark").click();
     )
 }

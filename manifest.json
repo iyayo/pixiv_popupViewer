@@ -49,6 +49,10 @@
     "next_work": {
       "description": "次の作品を表示する",
       "global": false
+    },
+    "add_bookmark": {
+      "description": "ブックマークに追加する",
+      "global": false
     }
   }
 }
