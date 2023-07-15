@@ -18,6 +18,10 @@
     opacity: 1;
 }
 
+#pixiv_popupViewer_container:not(.show) > #pixiv_popupViewer_previous_work_button, #pixiv_popupViewer_container:not(.show) > #pixiv_popupViewer_next_work_button {
+    visibility: hidden;
+}
+
 #pixiv_popupViewer {
     order: 2;
     inset: 0;
@@ -56,6 +60,7 @@
     align-items: center;
     order: 1;
     z-index: 10000;
+    visibility: hidden;
     width: 5%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.15);
@@ -69,11 +74,16 @@
     align-items: center;
     order: 3;
     z-index: 10000;
+    visibility: hidden;
     width: 5%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: 0.2s;
+}
+
+#pixiv_popupViewer_previous_work_button.show, #pixiv_popupViewer_next_work_button.show {
+    visibility: visible;
 }
 
 #pixiv_popupViewer_switch_expand_button:hover, #pixiv_popupViewer_previous_work_button:hover, #pixiv_popupViewer_next_work_button:hover {

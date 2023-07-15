@@ -37,7 +37,7 @@ window.onload = async () => {
 
     window.onstorage = function(e) {
         if (e.key !== "theme") return;
-        
+
         if (localStorage.getItem("theme") === "dark") iframe.classList.add("dark");
         else iframe.classList.remove("dark");
     }
@@ -76,14 +76,14 @@ window.onload = async () => {
 
             if (!aTag || aTag.href === aTags[currentIndex].href) continue;
 
-            if (aTag.href === aTags[0].href) previous_work_button.style.visibility = "hidden";
-            else previous_work_button.style.visibility = "visible";
+            if (aTag.href === aTags[0].href) previous_work_button.classList.remove("show");
+            else  previous_work_button.classList.add("show");
 
-            next_work_button.style.visibility = "visible";
+            next_work_button.classList.add("show");
 
             iframe.contentWindow.location.replace(aTag.href);
             iframe.dataset.currentIndex = i;
-            
+
             return;
         }
     }
@@ -98,14 +98,14 @@ window.onload = async () => {
 
             if (!aTag || aTag.href === aTags[currentIndex].href) continue;
 
-            if (aTag.href === aTags[aTags.length - 1].href) next_work_button.style.visibility = "hidden";
-            else next_work_button.style.visibility = "visible";
+            if (aTag.href === aTags[aTags.length - 1].href) next_work_button.classList.remove("show");
+            else next_work_button.classList.add("show");
 
-            previous_work_button.style.visibility = "visible";
+            previous_work_button.classList.add("show");
 
             iframe.contentWindow.location.replace(aTag.href);
             iframe.dataset.currentIndex = i;
-            
+
             return;
         }
     }
@@ -124,11 +124,11 @@ window.onload = async () => {
 
                 observer.disconnect();
 
-                if (event.currentTarget.href === aTags[0].href) previous_work_button.style.visibility = "hidden";
-                else previous_work_button.style.visibility = "visible";
+                if (event.currentTarget.href === aTags[0].href) previous_work_button.classList.remove("show");
+                else previous_work_button.classList.add("show");
 
-                if (event.currentTarget.href === aTags[aTags.length - 1].href) next_work_button.style.visibility = "hidden";
-                else next_work_button.style.visibility = "visible";
+                if (event.currentTarget.href === aTags[aTags.length - 1].href) next_work_button.classList.remove("show");
+                else next_work_button.classList.add("show");
 
                 iframe.dataset.currentIndex = aTags.findIndex(aTag => aTag === event.currentTarget);
                 iframe.contentWindow.location.replace(event.currentTarget.href);
@@ -200,9 +200,11 @@ window.onload = async () => {
     })
 
     chrome.runtime.onMessage.addListener(request => {
-          if (request === "expand") switch_expand_button.click();
-          if (request === "prev_work") previous_work_button.click();
-          if (request === "next_work") next_work_button.click();
+        if (!iframe_container.classList.contains("show")) return;
+
+        if (request === "expand") switch_expand_button.click();
+        if (request === "prev_work") previous_work_button.click();
+        if (request === "next_work") next_work_button.click();
         if (request === "add_bookmark" && iframe.contentWindow.document.querySelector("button.gtm-main-bookmark")) iframe.contentWindow.document.querySelector("button.gtm-main-bookmark").click();
-    )
+    })
 }
