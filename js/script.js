@@ -35,7 +35,7 @@ window.onload = async () => {
     target.append(iframe_container);
     iframe_container.append(iframe, switch_expand_button, previous_work_button, next_work_button);
 
-    window.onstorage = function(e) {
+    window.onstorage = function (e) {
         if (e.key !== "theme") return;
 
         if (localStorage.getItem("theme") === "dark") iframe.classList.add("dark");
@@ -77,7 +77,7 @@ window.onload = async () => {
             if (!aTag || aTag.href === aTags[currentIndex].href) continue;
 
             if (aTag.href === aTags[0].href) previous_work_button.classList.remove("show");
-            else  previous_work_button.classList.add("show");
+            else previous_work_button.classList.add("show");
 
             next_work_button.classList.add("show");
 
