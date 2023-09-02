@@ -53,6 +53,10 @@
     "add_bookmark": {
       "description": "ブックマークに追加する",
       "global": false
+    },
+    "close_popup": {
+      "description": "ポップアップを閉じる",
+      "global": false
     }
   }
 }
