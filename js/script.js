@@ -46,7 +46,7 @@ window.onload = async () => {
         if (!iframe_container.classList.contains("show")) return;
 
         iframe.contentWindow.location.replace("about:blank");
-        iframe_container.classList.toggle("show");
+        iframe_container.classList.remove("show");
 
         document.getElementsByTagName("html")[0].style.overflowY = "auto";
         observer.observe(target, config);
@@ -66,47 +66,45 @@ window.onload = async () => {
         }
     }
 
-    previous_work_button.onclick = function (event) {
+    previous_work_button.onclick = next_work_button.onclick = changeWork;
+
+    function changeWork(event) {
         event.stopPropagation();
 
         const currentIndex = Number(iframe.dataset.currentIndex);
 
-        for (let i = currentIndex; 0 < i; i--) {
-            const aTag = aTags[i];
+        if (event.target.id === "pixiv_popupViewer_previous_work_button") {
+            for (let i = currentIndex; 0 < i; i--) {
+                const aTag = aTags[i];
+    
+                if (!aTag || aTag.href === aTags[currentIndex].href) continue;
+    
+                if (aTag.href === aTags[0].href) previous_work_button.classList.remove("show");
+                else previous_work_button.classList.add("show");
+    
+                next_work_button.classList.add("show");
+    
+                iframe.contentWindow.location.replace(aTag.href);
+                iframe.dataset.currentIndex = i;
+    
+                return;
+            }
+        } else if (event.target.id === "pixiv_popupViewer_next_work_button") {
+            for (let i = currentIndex; i < aTags.length; i++) {
+                const aTag = aTags[i];
 
-            if (!aTag || aTag.href === aTags[currentIndex].href) continue;
+                if (!aTag || aTag.href === aTags[currentIndex].href) continue;
 
-            if (aTag.href === aTags[0].href) previous_work_button.classList.remove("show");
-            else previous_work_button.classList.add("show");
+                if (aTag.href === aTags[aTags.length - 1].href) next_work_button.classList.remove("show");
+                else next_work_button.classList.add("show");
 
-            next_work_button.classList.add("show");
+                previous_work_button.classList.add("show");
 
-            iframe.contentWindow.location.replace(aTag.href);
-            iframe.dataset.currentIndex = i;
+                iframe.contentWindow.location.replace(aTag.href);
+                iframe.dataset.currentIndex = i;
 
-            return;
-        }
-    }
-
-    next_work_button.onclick = function (event) {
-        event.stopPropagation();
-
-        const currentIndex = Number(iframe.dataset.currentIndex);
-
-        for (let i = currentIndex; i < aTags.length; i++) {
-            const aTag = aTags[i];
-
-            if (!aTag || aTag.href === aTags[currentIndex].href) continue;
-
-            if (aTag.href === aTags[aTags.length - 1].href) next_work_button.classList.remove("show");
-            else next_work_button.classList.add("show");
-
-            previous_work_button.classList.add("show");
-
-            iframe.contentWindow.location.replace(aTag.href);
-            iframe.dataset.currentIndex = i;
-
-            return;
+                return;
+            }
         }
     }
 
@@ -124,15 +122,16 @@ window.onload = async () => {
 
                 observer.disconnect();
 
-                if (event.currentTarget.href === aTags[0].href) previous_work_button.classList.remove("show");
+                if (element.href === aTags[0].href) previous_work_button.classList.remove("show");
                 else previous_work_button.classList.add("show");
 
-                if (event.currentTarget.href === aTags[aTags.length - 1].href) next_work_button.classList.remove("show");
+                if (element.href === aTags[aTags.length - 1].href) next_work_button.classList.remove("show");
                 else next_work_button.classList.add("show");
 
-                iframe.dataset.currentIndex = aTags.findIndex(aTag => aTag === event.currentTarget);
-                iframe.contentWindow.location.replace(event.currentTarget.href);
-                iframe_container.classList.toggle("show");
+                iframe.dataset.currentIndex = aTags.findIndex(aTag => aTag === element);
+
+                iframe.contentWindow.location.replace(element.href);
+                iframe_container.classList.add("show");
 
                 document.getElementsByTagName("html")[0].style.overflowY = "hidden";
 
@@ -155,16 +154,11 @@ window.onload = async () => {
         })
     }
 
-    function compressPopup(width, height) {
+    function compressPopup(width = "80%", height = "90%") {
         iframe.classList.remove("expand");
 
-        if (width === undefined || height === undefined) {
-            iframe.style.width = "80%";
-            iframe.style.height = "90%";
-        } else {
-            iframe.style.width = width + "%";
-            iframe.style.height = height + "%";
-        }
+        iframe.style.width = width + "%";
+        iframe.style.height = height + "%";
     }
 
     function expandPopup() {

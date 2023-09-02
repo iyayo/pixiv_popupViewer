@@ -86,6 +86,10 @@
     visibility: visible;
 }
 
+#pixiv_popupViewer_previous_work_button *, #pixiv_popupViewer_next_work_button * {
+    pointer-events: none;
+}
+
 #pixiv_popupViewer_switch_expand_button:hover, #pixiv_popupViewer_previous_work_button:hover, #pixiv_popupViewer_next_work_button:hover {
     background-color: #0096fa;
 }
