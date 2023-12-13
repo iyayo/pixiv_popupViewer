@@ -85,7 +85,20 @@
     transition: 0.2s;
 }
 
-#pixiv_popupViewer_previous_work_button.show, #pixiv_popupViewer_next_work_button.show {
+#pixiv_popupViewer_alert_bookmark {
+    inset: 0;
+    z-index: 10001;
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    width: 72px;
+    height: 72px;
+    margin: auto;
+    fill: #ff4060;
+    transition: 0.2s;
+}
+
+#pixiv_popupViewer_previous_work_button.show, #pixiv_popupViewer_next_work_button.show, #pixiv_popupViewer_alert_bookmark.show {
     visibility: visible;
     opacity: 1;
 }
