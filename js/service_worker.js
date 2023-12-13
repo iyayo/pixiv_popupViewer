@@ -4,3 +4,7 @@ chrome.commands.onCommand.addListener((command) => {
         await chrome.tabs.sendMessage(tab.id, command);
       })();
 });
+
+chrome.storage.local.get("mobileView", item => {
+    if (item.mobileView === true) chrome.declarativeNetRequest.updateEnabledRulesets({enableRulesetIds: ["ruleset"]});
+})
