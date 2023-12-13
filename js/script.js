@@ -205,8 +205,11 @@ window.onload = async () => {
         if (request === "expand") switch_expand_button.click();
         if (request === "prev_work") previous_work_button.click();
         if (request === "next_work") next_work_button.click();
-        if (request === "add_bookmark" && iframe.contentWindow.document.querySelector("button.gtm-main-bookmark")) {
-            iframe.contentWindow.document.querySelector("button.gtm-main-bookmark").click();
+        if (request === "add_bookmark") {
+            if (iframe.contentWindow.document.querySelector("button.gtm-main-bookmark")) iframe.contentWindow.document.querySelector("button.gtm-main-bookmark").click();
+            else if (iframe.contentWindow.document.querySelector(".works-bookmark-button.work-interactions-panel-item > svg[xmlns]")) iframe.contentWindow.document.querySelector(".works-bookmark-button.work-interactions-panel-item").click();
+            else return;
+
             alert_bookmark.classList.add("show");
 
             clearTimeout(timerId);
