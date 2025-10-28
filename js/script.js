@@ -145,7 +145,7 @@ window.onload = async () => {
                     if (!options.autoSeeAll) return;
 
                     if (!iframe_container.classList.contains("show")) clearInterval(autoSeeAll_interval);
-                    if (iframe.contentWindow.document.querySelector("button.sc-9222a8f6-0.eJosta")) iframe.contentWindow.document.querySelector("button.sc-9222a8f6-0.eJosta").click();
+                    if (iframe.contentWindow.document.querySelector("button.sc-e3cb8b83-0.LDEei")) iframe.contentWindow.document.querySelector("button.sc-e3cb8b83-0.LDEei").click();
                     if (iframe.contentWindow.document.querySelector(".button-link")) iframe.contentWindow.document.querySelector(".button-link").click();
                 }, 100)
 
